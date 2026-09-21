@@ -470,6 +470,7 @@ const closeFullMenuModalBtn = document.getElementById('close-full-menu-modal-btn
 const closeFullMenuIconBtn = document.getElementById('close-full-menu-icon-btn');
 const fullMenuModalOverlay = document.getElementById('full-menu-modal-overlay');
 const modalMenuSearchInput = document.getElementById('modal-menu-search-input');
+const modalMenuSearchClearBtn = document.getElementById('modal-menu-search-clear');
 const modalMenuFilterWrapper = document.getElementById('modal-menu-filter-dropdown-wrapper');
 const modalMenuFilterBtn = document.getElementById('modal-menu-filter-dots-btn');
 const modalCurrentFilterLabel = document.getElementById('modal-current-filter-label');
@@ -502,6 +503,15 @@ if (modalMenuFilterBtn && modalMenuFilterWrapper) {
             modalMenuFilterBtn.setAttribute('aria-expanded', 'false');
         }
     });
+}
+
+function updateModalSearchClearBtn() {
+    if (!modalMenuSearchClearBtn || !modalMenuSearchInput) return;
+    if (modalMenuSearchInput.value.length > 0) {
+        modalMenuSearchClearBtn.classList.add('visible');
+    } else {
+        modalMenuSearchClearBtn.classList.remove('visible');
+    }
 }
 
 function filterModalMenu() {
@@ -558,6 +568,7 @@ function openFullMenuModal() {
         if (modalMenuSearchInput) {
             modalMenuSearchInput.value = '';
         }
+        updateModalSearchClearBtn();
         filterModalMenu();
     }
 }
@@ -618,6 +629,7 @@ if (modalCategoryTabs.length > 0) {
             // Clear search input on tab selection so category items are clearly displayed
             if (modalMenuSearchInput && modalMenuSearchInput.value.trim() !== '') {
                 modalMenuSearchInput.value = '';
+                updateModalSearchClearBtn();
             }
             
             filterModalMenu();
@@ -627,6 +639,7 @@ if (modalCategoryTabs.length > 0) {
 
 if (modalMenuSearchInput) {
     modalMenuSearchInput.addEventListener('input', () => {
+        updateModalSearchClearBtn();
         const query = modalMenuSearchInput.value.toLowerCase().trim();
         // If searching with a query while on a specific filter tab, switch tab to 'all' so UI reflects all matching items
         if (query !== '' && modalActiveCategory !== 'all') {
@@ -645,6 +658,15 @@ if (modalMenuSearchInput) {
             }
         }
         filterModalMenu();
+    });
+}
+
+if (modalMenuSearchClearBtn && modalMenuSearchInput) {
+    modalMenuSearchClearBtn.addEventListener('click', () => {
+        modalMenuSearchInput.value = '';
+        updateModalSearchClearBtn();
+        filterModalMenu();
+        modalMenuSearchInput.focus();
     });
 }
 
