@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    RAMDHONU CAFE — Warm Cream & Vibrant Rainbow Gold Light Theme
    ============================================================ */
 
@@ -3254,7 +3254,7 @@ footer p {
     scroll-behavior: smooth;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x pan-y ;
+    touch-action: pan-x pan-y !important;
     padding: 8px 6px 18px;
     width: 100%;
     cursor: grab;
@@ -3288,6 +3288,7 @@ footer p {
 .food-menu-card {
     flex: 0 0 185px;
     scroll-snap-align: start;
+    touch-action: pan-x pan-y !important;
     background: var(--bg-card) !important;
     border: 1.5px solid var(--glass-border) !important;
     border-radius: 18px;
@@ -3514,11 +3515,6 @@ footer p {
     }
 }
 
-/* Shimmer ray sweep across button */
-}
-
-@media (max-width: 600px) {}
-
 /* ---- Optimized Compact Gap for Customer Reviews Photo Gallery ---- */
 .reviews-section {
     padding: 24px 5% 20px !important;
@@ -3542,11 +3538,6 @@ footer p {
     margin-top: 0.8rem !important;
     gap: 8px !important;
 }
-
-/* Shimmer ray sweep across button */
-}
-
-@media (max-width: 600px) {}
 
 /* ============================================================
    IN-PAGE FULL MENU POPUP MODAL STYLES (Adaptive Theme)
