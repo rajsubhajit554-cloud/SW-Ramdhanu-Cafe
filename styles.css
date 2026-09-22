@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    RAMDHONU CAFE — Warm Cream & Vibrant Rainbow Gold Light Theme
    ============================================================ */
 
@@ -3252,13 +3252,17 @@ footer p {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
     padding: 8px 6px 18px;
     width: 100%;
     cursor: grab;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-gold) var(--bg-dark);
+    will-change: scroll-position;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .main-menu-scroll-track:active {
@@ -3293,12 +3297,12 @@ footer p {
     padding: 12px;
     text-align: center;
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.07) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
     animation: floatMenuItem 4.5s ease-in-out infinite alternate;
     user-select: none;
     position: relative;
+    will-change: transform;
+    contain: layout style;
 }
 
 .food-menu-card:nth-child(even) {
@@ -3322,6 +3326,11 @@ footer p {
     transform: translateY(-8px) scale(1.03);
     border-color: var(--accent-gold) !important;
     box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12), var(--glow-gold) !important;
+}
+
+/* Pause card animations while scrolling */
+.main-menu-scroll-track.is-scrolling .food-menu-card {
+    animation-play-state: paused;
 }
 
 .food-card-badge {
